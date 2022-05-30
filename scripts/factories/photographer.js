@@ -21,10 +21,11 @@ function photographerFactory(data) {
         locationElement.textContent = `${city}, ${country}`
 
         const taglineElement = document.createElement("p")
+        taglineElement.classList.add("photographer-tagline")
         taglineElement.textContent = tagline
 
         const priceElement = document.createElement("p")
-        locationElement.classList.add("photographer-price")
+        priceElement.classList.add("photographer-price")
         priceElement.textContent = `${price}/jour`
 
         articleElement.appendChild(profileImageElement)

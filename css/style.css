@@ -53,3 +53,16 @@ header {
     font-size: 36px;
     text-align: center;
 }
+
+.photographer-tagline {
+    text-align: center;
+}
+
+.photographer-location {
+    color: var(--color-primary-dark);
+}
+
+.photographer-price {
+    color: grey;
+    font-size: 0.8em;
+}
