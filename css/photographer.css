@@ -33,6 +33,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 70px;
 }
 
 .modal {
@@ -139,4 +140,16 @@ form input {
 
 .photograph-media-name {
     margin-right: auto;
+}
+
+.photograph-floating-infos {
+    background-color: var(--color-primary-light);
+    position: fixed;
+    right: 20px;
+    bottom: 0;
+    display: flex;
+    padding: 1em 1.3em;
+    font-weight: bold;
+    gap: 3em;
+    border-radius: 5px 5px 0 0;
 }
