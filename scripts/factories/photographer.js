@@ -1,11 +1,15 @@
 function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price } = data
+    const { name, portrait, city, country, tagline, price, id } = data
 
     const picture = `assets/photographers/${portrait}`
 
     function getUserCardDOM() {
         const articleElement = document.createElement("article")
         articleElement.classList.add("photographer-card")
+
+        const linkElement = document.createElement("a")
+        linkElement.classList.add("photographer-link")
+        linkElement.setAttribute("href", "/photographer.html?id=" + id)
 
         const profileImageElement = document.createElement("img")
         profileImageElement.classList.add("photographer-photo")
@@ -15,6 +19,9 @@ function photographerFactory(data) {
         const nameElement = document.createElement("h2")
         nameElement.classList.add("photographer-name")
         nameElement.textContent = name
+
+        linkElement.appendChild(profileImageElement)
+        linkElement.appendChild(nameElement)
 
         const locationElement = document.createElement("h3")
         locationElement.classList.add("photographer-location")
@@ -28,8 +35,7 @@ function photographerFactory(data) {
         priceElement.classList.add("photographer-price")
         priceElement.textContent = `${price}/jour`
 
-        articleElement.appendChild(profileImageElement)
-        articleElement.appendChild(nameElement)
+        articleElement.appendChild(linkElement)
         articleElement.appendChild(locationElement)
         articleElement.appendChild(taglineElement)
         articleElement.appendChild(priceElement)
