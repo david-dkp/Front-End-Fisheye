@@ -25,23 +25,65 @@
         <main id="main">
             <div class="photograph-header">
                 <div class="photograph-infos-container">
-                    <h1 class="photograph-infos-name">Mimi Keel</h1>
-                    <p class="photograph-infos-location">London, UK</p>
-                    <p class="photograph-infos-tagline">
-                        Voir le beau dans le quotidien
-                    </p>
+                    <h1 class="photograph-infos-name"></h1>
+                    <p class="photograph-infos-location"></p>
+                    <p class="photograph-infos-tagline"></p>
                 </div>
                 <button class="contact_button" onclick="displayModal()">
                     Contactez-moi
                 </button>
-                <img
-                    src="assets/photographers/EllieRoseWilkens.jpg"
-                    class="photograph-header-image"
-                />
+                <img class="photograph-header-image" />
             </div>
             <div class="photograph-medias-section">
-                <h3>Trier par</h3>
+                <div class="sorting-container">
+                    <h3>Trier par</h3>
+                    <div class="sorting-item">
+                        Popularité<i class="fa-solid fa-chevron-up"></i>
+                    </div>
+                </div>
                 <div class="photograph-medias">
+                    <div class="photograph-media-card">
+                        <img
+                            src="assets/photographers/MarcelNikolic.jpg"
+                            alt=""
+                            class="photograph-media-image"
+                        />
+                        <div class="photograph-media-infos">
+                            <p class="photograph-media-name">Arc-en-cie</p>
+                            <p class="photograph-media-likes-count">11</p>
+                            <i
+                                class="fa-solid fa-heart photograph-media-like-icon"
+                            ></i>
+                        </div>
+                    </div>
+                    <div class="photograph-media-card">
+                        <img
+                            src="assets/photographers/MarcelNikolic.jpg"
+                            alt=""
+                            class="photograph-media-image"
+                        />
+                        <div class="photograph-media-infos">
+                            <p class="photograph-media-name">Arc-en-cie</p>
+                            <p class="photograph-media-likes-count">11</p>
+                            <i
+                                class="fa-solid fa-heart photograph-media-like-icon"
+                            ></i>
+                        </div>
+                    </div>
+                    <div class="photograph-media-card">
+                        <img
+                            src="assets/photographers/MarcelNikolic.jpg"
+                            alt=""
+                            class="photograph-media-image"
+                        />
+                        <div class="photograph-media-infos">
+                            <p class="photograph-media-name">Arc-en-cie</p>
+                            <p class="photograph-media-likes-count">11</p>
+                            <i
+                                class="fa-solid fa-heart photograph-media-like-icon"
+                            ></i>
+                        </div>
+                    </div>
                     <div class="photograph-media-card">
                         <img
                             src="assets/photographers/MarcelNikolic.jpg"
@@ -90,22 +132,39 @@
                 <p>297 081 <i class="fa-solid fa-heart"></i></p>
                 <p><span class="photograph-floating-price">300€</span>/jour</p>
             </div>
-        </main>
-        <div id="contact_modal">
-            <div class="modal">
-                <header>
-                    <h2>Contactez-moi</h2>
-                    <img src="assets/icons/close.svg" onclick="closeModal()" />
-                </header>
-                <form>
-                    <div>
-                        <label>Prénom</label>
-                        <input />
-                    </div>
-                    <button class="contact_button">Envoyer</button>
-                </form>
+            <div id="contact_modal">
+                <div class="modal">
+                    <header>
+                        <h2>Contactez-moi</h2>
+                        <img
+                            src="assets/icons/close.svg"
+                            onclick="closeModal()"
+                        />
+                    </header>
+                    <form>
+                        <div>
+                            <label>Prénom</label>
+                            <input type="text" />
+                        </div>
+                        <div>
+                            <label>Nom</label>
+                            <input type="text" />
+                        </div>
+                        <div>
+                            <label>Email</label>
+                            <input type="email" />
+                        </div>
+                        <div>
+                            <label>Votre message</label>
+                            <input type="text" />
+                        </div>
+                        <button class="contact_button">Envoyer</button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </main>
+
         <script src="/scripts/utils/contactForm.js"></script>
+        <script type="module" src="/scripts/pages/photographer.js"></script>
     </body>
 </html>

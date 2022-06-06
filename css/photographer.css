@@ -1,5 +1,8 @@
 #contact_modal {
     display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
 }
 
 .photograph-header {
@@ -33,6 +36,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
     padding-bottom: 70px;
 }
 
@@ -121,6 +125,7 @@ form input {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
+    margin-top: 35px;
 }
 
 .photograph-media-image {
@@ -152,4 +157,21 @@ form input {
     font-weight: bold;
     gap: 3em;
     border-radius: 5px 5px 0 0;
+}
+
+.sorting-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sorting-item {
+    background-color: var(--color-primary-dark);
+    color: white;
+    border-radius: 5px;
+    padding: 0.6em;
+}
+
+.sorting-item i {
+    margin-left: 10px;
 }

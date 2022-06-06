@@ -1,7 +1,9 @@
-function photographerFactory(data) {
+import { getPhotographImagePath } from "../utils/imageUtils.js"
+
+export const createPhotographer = (data) => {
     const { name, portrait, city, country, tagline, price, id } = data
 
-    const picture = `assets/photographers/${portrait}`
+    const picture = getPhotographImagePath(portrait)
 
     function getUserCardDOM() {
         const articleElement = document.createElement("article")
