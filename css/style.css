@@ -21,7 +21,7 @@ header {
 }
 
 header h1 {
-    color: var(--color-primary-dark);
+    color: var(--color-primary-light);
 }
 
 .logo {
@@ -62,7 +62,7 @@ header h1 {
 }
 
 .photographer-location {
-    color: var(--color-primary-dark);
+    color: var(--color-primary-light);
 }
 
 .photographer-price {

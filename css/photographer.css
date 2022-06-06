@@ -101,12 +101,12 @@ form input {
 }
 
 .photograph-header .photograph-infos-name {
-    color: var(--color-primary);
+    color: var(--color-primary-light);
     font-size: 2.5em;
 }
 
 .photograph-header .photograph-infos-location {
-    color: var(--color-primary-dark);
+    color: var(--color-primary-light);
     font-size: 1.3em;
 }
 
@@ -139,7 +139,7 @@ form input {
     gap: 5px;
     display: flex;
     align-items: center;
-    color: var(--color-primary-dark);
+    color: var(--color-primary-light);
     font-size: 1.3em;
 }
 
@@ -148,7 +148,7 @@ form input {
 }
 
 .photograph-floating-infos {
-    background-color: var(--color-primary-light);
+    background-color: var(--color-secondary);
     position: fixed;
     right: 20px;
     bottom: 0;
@@ -166,7 +166,7 @@ form input {
 }
 
 .sorting-item {
-    background-color: var(--color-primary-dark);
+    background-color: var(--color-primary-light);
     color: white;
     border-radius: 5px;
     padding: 0.6em;

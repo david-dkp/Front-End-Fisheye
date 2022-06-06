@@ -1,5 +1,5 @@
 export const createMedia = (media) => {
-    const { title, image, likes, date, price } = media
+    const { title, image, video, likes, date, price } = media
 
     function getMediaCardDOM() {
         const mediaCardElement = document.createElement("div")
