@@ -1,6 +1,6 @@
 import { getQueryParams } from "../utils/urlUtils.js"
 import { getPhotographerById } from "../apis/photographersApi.js"
-import { getPhotographerMedias } from "../apis/mediasApi.js"
+import { getPhotographerMedias, updateMediaLike } from "../apis/mediasApi.js"
 import { getPhotographImagePath } from "../utils/imageUtils.js"
 import { createMedia } from "../factories/medias.js"
 import {
@@ -25,17 +25,44 @@ const photographTotalLikesCountElement = document.querySelector(
 const photographPriceElement = document.querySelector(
     ".photograph-floating-price"
 )
+const mediasSection = document.querySelector(".photograph-medias")
+
+let photographerId
+
+const sortMediasByPopularity = (medias) => {
+    return medias.sort((a, b) => {
+        return b.likes - a.likes
+    })
+}
+
+const sortMediasByTitle = (medias) => {
+    return medias.sort((a, b) => {
+        return a.title.localeCompare(b.title)
+    })
+}
+
+let sortMedias = sortMediasByPopularity
+
+const updateTotalLikesCount = (totalLikesCount) => {
+    photographTotalLikesCountElement.textContent = totalLikesCount
+}
 
 const renderPhotographerMedias = (medias) => {
-    const mediasSection = document.querySelector(".photograph-medias")
+    mediasSection.textContent = ""
     medias.forEach((media) => {
-        const mediaDOM = createMedia(media)
+        const mediaDOM = createMedia(media, async () => {
+            await updateMediaLike(media.id, media.likes + 1)
+            const newMedias = await getPhotographerMedias(photographerId)
+            updateTotalLikesCount(
+                newMedias.reduce((acc, media) => acc + media.likes, 0)
+            )
+            renderPhotographerMedias(sortMedias(newMedias))
+        })
         mediasSection.appendChild(mediaDOM.getMediaCardDOM())
     })
 }
 
 const renderPhotographer = (photographer, totalLikesCount) => {
-    console.log(photographer)
     photographNameElement.textContent = photographer.name
     photographLocationElement.textContent =
         photographer.city + ", " + photographer.country
@@ -52,10 +79,10 @@ const renderPhotographer = (photographer, totalLikesCount) => {
 
 const init = async () => {
     const queryParams = getQueryParams()
-    const id = queryParams.id
+    photographerId = queryParams.id
 
-    const photographer = await getPhotographerById(id)
-    const photographerMedias = await getPhotographerMedias(id)
+    const photographer = await getPhotographerById(photographerId)
+    const photographerMedias = await getPhotographerMedias(photographerId)
 
     const totalLikesCount = photographerMedias.reduce(
         (likesCount, media) => likesCount + media.likes,
@@ -63,7 +90,7 @@ const init = async () => {
     )
     renderPhotographer(photographer, totalLikesCount)
 
-    renderPhotographerMedias(photographerMedias)
+    renderPhotographerMedias(sortMediasByPopularity(photographerMedias))
 }
 
 init()

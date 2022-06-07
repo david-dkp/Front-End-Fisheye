@@ -175,3 +175,12 @@ form input {
 .sorting-item i {
     margin-left: 10px;
 }
+
+.photograph-media-like-icon {
+    transition: all 0.15s ease;
+    cursor: pointer;
+}
+
+.photograph-media-like-icon:active {
+    transform: scale(0.9);
+}

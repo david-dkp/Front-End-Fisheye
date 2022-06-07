@@ -1,6 +1,6 @@
 import { getMediaImagePath } from "../utils/imageUtils.js"
 
-export const createMedia = (media) => {
+export const createMedia = (media, onHeartIconClick) => {
     const { title, image, video, likes, date, price } = media
 
     function getMediaCardDOM() {
@@ -34,6 +34,7 @@ export const createMedia = (media) => {
             "fa-heart",
             "photograph-media-like-icon"
         )
+        mediaLikeIconElement.addEventListener("click", onHeartIconClick)
 
         mediaInfosElement.appendChild(mediaNameElement)
         mediaInfosElement.appendChild(mediaLikesCountElement)
@@ -45,5 +46,13 @@ export const createMedia = (media) => {
         return mediaCardElement
     }
 
-    return { title, image, video, likes, date, price, getMediaCardDOM }
+    return {
+        title,
+        image,
+        video,
+        likes,
+        date,
+        price,
+        getMediaCardDOM,
+    }
 }
