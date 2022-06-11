@@ -168,7 +168,6 @@ form input {
 .sorting-item {
     background-color: var(--color-primary-light);
     color: white;
-    border-radius: 5px;
     padding: 0.6em;
 }
 
@@ -183,4 +182,10 @@ form input {
 
 .photograph-media-like-icon:active {
     transform: scale(0.9);
+}
+
+.sorting-dropdown-list {
+    list-style: none;
+    border-radius: 5px;
+    overflow: hidden;
 }

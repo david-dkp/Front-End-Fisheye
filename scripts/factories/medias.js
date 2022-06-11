@@ -1,7 +1,7 @@
 import { getMediaImagePath } from "../utils/imageUtils.js"
 
 export const createMedia = (media, onHeartIconClick) => {
-    const { title, image, video, likes, date, price } = media
+    const { id, title, image, video, likes, date, price } = media
 
     function getMediaCardDOM() {
         const mediaCardElement = document.createElement("div")
@@ -47,6 +47,7 @@ export const createMedia = (media, onHeartIconClick) => {
     }
 
     return {
+        id,
         title,
         image,
         video,

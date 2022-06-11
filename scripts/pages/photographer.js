@@ -4,6 +4,11 @@ import { getPhotographerMedias, updateMediaLike } from "../apis/mediasApi.js"
 import { getPhotographImagePath } from "../utils/imageUtils.js"
 import { createMedia } from "../factories/medias.js"
 import {
+    sortMediasByPopularity,
+    sortMediasByTitle,
+    sortMediasByDate,
+} from "../utils/mediasUtils.js"
+import {
     getFormattedNumberWithSpaces,
     getFormattedPrice,
 } from "../utils/numberUtils.js"
@@ -29,19 +34,25 @@ const mediasSection = document.querySelector(".photograph-medias")
 
 let photographerId
 
-const sortMediasByPopularity = (medias) => {
-    return medias.sort((a, b) => {
-        return b.likes - a.likes
-    })
-}
+const mediasSortingItems = [
+    {
+        id: "popularity",
+        name: "Popularité",
+        sortMedias: sortMediasByPopularity,
+    },
+    {
+        id: "date",
+        name: "Date",
+        sortMedias: sortMediasByDate,
+    },
+    {
+        id: "title",
+        name: "Titre",
+        sortMedias: sortMediasByTitle,
+    },
+]
 
-const sortMediasByTitle = (medias) => {
-    return medias.sort((a, b) => {
-        return a.title.localeCompare(b.title)
-    })
-}
-
-let sortMedias = sortMediasByPopularity
+const activeSortingItem = mediasSortingItems[0]
 
 const updateTotalLikesCount = (totalLikesCount) => {
     photographTotalLikesCountElement.textContent = totalLikesCount
@@ -56,7 +67,7 @@ const renderPhotographerMedias = (medias) => {
             updateTotalLikesCount(
                 newMedias.reduce((acc, media) => acc + media.likes, 0)
             )
-            renderPhotographerMedias(sortMedias(newMedias))
+            renderPhotographerMedias(activeSortingItem.sortMedias(newMedias))
         })
         mediasSection.appendChild(mediaDOM.getMediaCardDOM())
     })
@@ -89,8 +100,7 @@ const init = async () => {
         0
     )
     renderPhotographer(photographer, totalLikesCount)
-
-    renderPhotographerMedias(sortMediasByPopularity(photographerMedias))
+    renderPhotographerMedias(activeSortingItem.sortMedias(photographerMedias))
 }
 
 init()
