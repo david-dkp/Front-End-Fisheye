@@ -3,6 +3,7 @@ import { getPhotographerById } from "../apis/photographersApi.js"
 import { getPhotographerMedias, updateMediaLike } from "../apis/mediasApi.js"
 import { getPhotographImagePath } from "../utils/imageUtils.js"
 import { createMedia } from "../factories/medias.js"
+import { createMediaSorting } from "../factories/mediasSorting.js"
 import {
     sortMediasByPopularity,
     sortMediasByTitle,
@@ -32,6 +33,14 @@ const photographPriceElement = document.querySelector(
 )
 const mediasSection = document.querySelector(".photograph-medias")
 
+const sortingDropDownListElement = document.querySelector(
+    ".sorting-dropdown-list"
+)
+
+const sortingItemPlaceHolderElement = document.querySelector(
+    ".sorting-item-placeholder"
+)
+
 let photographerId
 
 const mediasSortingItems = [
@@ -52,10 +61,108 @@ const mediasSortingItems = [
     },
 ]
 
-const activeSortingItem = mediasSortingItems[0]
+let activeSortingItem = mediasSortingItems[0]
+let isSortingDropDownOpen = false
 
 const updateTotalLikesCount = (totalLikesCount) => {
     photographTotalLikesCountElement.textContent = totalLikesCount
+}
+
+const renderMediasSortingItems = () => {
+    sortingDropDownListElement.innerHTML = ""
+
+    sortingItemPlaceHolderElement.textContent = activeSortingItem.name
+    const chevronElement = document.createElement("i")
+    chevronElement.classList.add("fa-solid", "fa-chevron-down")
+
+    sortingItemPlaceHolderElement.appendChild(chevronElement)
+
+    const sortingMediasItemsOrder = mediasSortingItems.sort((a, b) => {
+        if (a.id === activeSortingItem.id) {
+            return -1
+        }
+        if (b.id === activeSortingItem.id) {
+            return 1
+        }
+        return 0
+    })
+
+    const sortingMediasElements = sortingMediasItemsOrder.map((item, i) => {
+        const sortingItemElement = createMediaSorting({
+            name: item.name,
+            showChevron: i === 0,
+            isChevronUp: isSortingDropDownOpen,
+            onClick: async () => {
+                activeSortingItem = item
+                isSortingDropDownOpen = !isSortingDropDownOpen
+                sortingDropDownListElement.classList.toggle("open")
+                renderMediasSortingItems()
+
+                if (i !== 0) {
+                    renderPhotographerMedias(
+                        activeSortingItem.sortMedias(
+                            await getPhotographerMedias(photographerId)
+                        )
+                    )
+                }
+            },
+        })
+        return sortingItemElement.getMediaSortingDOM()
+    })
+
+    sortingDropDownListElement.append(...sortingMediasElements)
+
+    // if (isSortingDropDownOpen) {
+    //     const activeSortingItemElement = createMediaSorting({
+    //         name: activeSortingItem.name,
+    //         showChevron: true,
+    //         isChevronUp: true,
+    //         onClick: () => {
+    //             isSortingDropDownOpen = false
+    //             renderMediasSortingItems()
+    //         },
+    //     }).getMediaSortingDOM()
+    //     sortingDropDownListElement.appendChild(activeSortingItemElement)
+
+    //     const otherSortingItems = mediasSortingItems.filter(
+    //         (item) => item.id !== activeSortingItem.id
+    //     )
+    //     const otherSortingItemsElements = otherSortingItems.map((item) => {
+    //         const mediaSortingElement = createMediaSorting({
+    //             name: item.name,
+    //             onClick: async () => {
+    //                 activeSortingItem = item
+    //                 isSortingDropDownOpen = false
+    //                 renderMediasSortingItems()
+    //                 renderPhotographerMedias(
+    //                     activeSortingItem.sortMedias(
+    //                         await getPhotographerMedias(photographerId)
+    //                     )
+    //                 )
+    //             },
+    //         }).getMediaSortingDOM()
+
+    //         return mediaSortingElement
+    //     })
+    //     sortingDropDownListElement.append(...otherSortingItemsElements)
+    // } else {
+    //     const activeSortingItemElement = createMediaSorting({
+    //         name: activeSortingItem.name,
+    //         isChevronUp: false,
+    //         showChevron: true,
+    //         onClick: async () => {
+    //             isSortingDropDownOpen = true
+    //             renderMediasSortingItems()
+    //             renderPhotographerMedias(
+    //                 activeSortingItem.sortMedias(
+    //                     await getPhotographerMedias(photographerId)
+    //                 )
+    //             )
+    //         },
+    //     }).getMediaSortingDOM()
+
+    //     sortingDropDownListElement.appendChild(activeSortingItemElement)
+    // }
 }
 
 const renderPhotographerMedias = (medias) => {
@@ -101,6 +208,7 @@ const init = async () => {
     )
     renderPhotographer(photographer, totalLikesCount)
     renderPhotographerMedias(activeSortingItem.sortMedias(photographerMedias))
+    renderMediasSortingItems()
 }
 
 init()

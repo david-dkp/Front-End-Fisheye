@@ -168,6 +168,9 @@ form input {
 .sorting-item {
     background-color: var(--color-primary-light);
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.6em;
 }
 
@@ -184,8 +187,23 @@ form input {
     transform: scale(0.9);
 }
 
+.sorting-list-container {
+    position: relative;
+}
+
 .sorting-dropdown-list {
+    top: 0;
+    position: absolute;
     list-style: none;
     border-radius: 5px;
+    height: 40.1875px;
     overflow: hidden;
+}
+
+.sorting-dropdown-list.open {
+    height: auto;
+}
+
+.sorting-item-placeholder {
+    border-radius: 5px;
 }
