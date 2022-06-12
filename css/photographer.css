@@ -282,3 +282,7 @@ form input {
 .message-input {
     width: 100%;
 }
+
+.sorting-label {
+    font-size: 1.2rem;
+}
