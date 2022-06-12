@@ -19,7 +19,11 @@
     <body>
         <header>
             <a href="/">
-                <img src="assets/images/logo.png" class="logo" />
+                <img
+                    src="assets/images/logo.png"
+                    class="logo"
+                    alt="Fisheye Home page"
+                />
             </a>
         </header>
         <main id="main">
@@ -58,37 +62,60 @@
                 </p>
                 <p><span class="photograph-floating-price"></span>/jour</p>
             </div>
-            <div id="contact_modal">
+            <div aria-labelledby="modal-contact-me-text" id="contact_modal">
                 <div class="modal">
                     <div class="modal-header">
-                        <h2>Contactez-moi</h2>
-                        <img
+                        <h2 id="modal-contact-me-text">Contactez-moi</h2>
+                        <input
+                            type="image"
                             class="modal-close-button"
                             src="assets/icons/close.svg"
+                            alt="Close Contact form"
                         />
                     </div>
                     <form>
                         <div>
                             <label>Prénom</label>
-                            <input class="firstname-input" type="text" />
+                            <input
+                                aria-label="First name"
+                                class="firstname-input"
+                                type="text"
+                            />
                             <p class="error-text error-text-firstname"></p>
                         </div>
                         <div>
                             <label>Nom</label>
-                            <input class="lastname-input" type="text" />
+                            <input
+                                aria-label="Last name"
+                                class="lastname-input"
+                                type="text"
+                            />
                             <p class="error-text error-text-lastname"></p>
                         </div>
                         <div>
                             <label>Email</label>
-                            <input class="email-input" type="text" />
+                            <input
+                                aria-label="Email"
+                                class="email-input"
+                                type="text"
+                            />
                             <p class="error-text error-text-email"></p>
                         </div>
                         <div>
                             <label>Votre message</label>
-                            <input class="message-input" type="" />
+                            <textarea
+                                type="text"
+                                rows="7"
+                                aria-label="Your message"
+                                class="message-input"
+                            ></textarea>
                             <p class="error-text error-text-message"></p>
                         </div>
-                        <button type="submit" class="contact_button">
+                        <button
+                            type="submit"
+                            aria-label="Send"
+                            class="contact_button"
+                        >
                             Envoyer
                         </button>
                     </form>

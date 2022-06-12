@@ -278,3 +278,7 @@ form input {
     color: var(--color-primary);
     font-size: 1.3em;
 }
+
+.message-input {
+    width: 100%;
+}
