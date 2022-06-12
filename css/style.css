@@ -21,7 +21,7 @@ header {
 }
 
 header h1 {
-    color: var(--color-primary-light);
+    color: var(--color-primary);
 }
 
 .logo {
@@ -62,7 +62,7 @@ header h1 {
 }
 
 .photographer-location {
-    color: var(--color-primary-light);
+    color: var(--color-primary);
 }
 
 .photographer-price {
@@ -75,10 +75,20 @@ header h1 {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    gap: 10px;
     text-decoration: none;
     transition: all 0.5s ease;
 }
 
 .photographer-link:hover {
     box-shadow: 0px 0px 8px 3px grey;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.5s ease;
 }

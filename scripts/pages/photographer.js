@@ -4,6 +4,7 @@ import { getPhotographerMedias, updateMediaLike } from "../apis/mediasApi.js"
 import { getPhotographImagePath } from "../utils/imageUtils.js"
 import { createMedia } from "../factories/medias.js"
 import { createMediaSorting } from "../factories/mediasSorting.js"
+import { init as initImageViewer } from "../utils/imageViewer.js"
 
 import {
     sortMediasByPopularity,
@@ -116,15 +117,23 @@ const renderMediasSortingItems = () => {
 
 const renderPhotographerMedias = (medias) => {
     mediasSection.textContent = ""
-    medias.forEach((media) => {
-        const mediaDOM = createMedia(media, async () => {
-            await updateMediaLike(media.id, media.likes + 1)
-            const newMedias = await getPhotographerMedias(photographerId)
-            updateTotalLikesCount(
-                newMedias.reduce((acc, media) => acc + media.likes, 0)
-            )
-            renderPhotographerMedias(activeSortingItem.sortMedias(newMedias))
-        })
+    medias.forEach((media, index) => {
+        const mediaDOM = createMedia(
+            media,
+            async () => {
+                await updateMediaLike(media.id, media.likes + 1)
+                const newMedias = await getPhotographerMedias(photographerId)
+                updateTotalLikesCount(
+                    newMedias.reduce((acc, media) => acc + media.likes, 0)
+                )
+                renderPhotographerMedias(
+                    activeSortingItem.sortMedias(newMedias)
+                )
+            },
+            () => {
+                initImageViewer(medias, index)
+            }
+        )
         mediasSection.appendChild(mediaDOM.getMediaCardDOM())
     })
 }

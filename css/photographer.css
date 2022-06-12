@@ -1,3 +1,5 @@
+@import url("./theme.css");
+
 #contact_modal {
     display: none;
     position: fixed;
@@ -109,7 +111,7 @@ form input {
 }
 
 .photograph-header .photograph-infos-location {
-    color: var(--color-primary-light);
+    color: var(--color-primary);
     font-size: 1.3em;
 }
 
@@ -131,6 +133,10 @@ form input {
     margin-top: 35px;
 }
 
+.photograph-media-card {
+    cursor: pointer;
+}
+
 .photograph-media-image {
     width: 100%;
     object-fit: cover;
@@ -142,7 +148,7 @@ form input {
     gap: 5px;
     display: flex;
     align-items: center;
-    color: var(--color-primary-light);
+    color: var(--color-primary);
     font-size: 1.3em;
 }
 
@@ -169,7 +175,7 @@ form input {
 }
 
 .sorting-item {
-    background-color: var(--color-primary-light);
+    background-color: var(--color-primary);
     color: white;
     display: flex;
     align-items: center;
@@ -213,4 +219,62 @@ form input {
 
 .error-text {
     color: rgb(183, 0, 0);
+}
+
+.media-viewer-dialog {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    padding: 20px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.media-viewer-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    gap: 15px;
+}
+
+.media-viewer-container i {
+    color: var(--color-primary);
+    font-size: 3.4em;
+}
+
+.media-viewer-media-container {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.media-viewer-media-image {
+    flex: 1;
+    object-fit: contain;
+    overflow: hidden;
+    background-color: black;
+    object-position: center;
+}
+
+.media-viewer-right-actions-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.media-viewer-right-button {
+    margin-block: auto;
+}
+
+.media-viewer-media-name {
+    color: var(--color-primary);
+    font-size: 1.3em;
 }

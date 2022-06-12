@@ -1,11 +1,13 @@
 import { getMediaImagePath } from "../utils/imageUtils.js"
 
-export const createMedia = (media, onHeartIconClick) => {
+export const createMedia = (media, onHeartIconClick, onMediaClick) => {
     const { id, title, image, video, likes, date, price } = media
 
     function getMediaCardDOM() {
         const mediaCardElement = document.createElement("div")
         mediaCardElement.classList.add("photograph-media-card")
+        mediaCardElement.onclick = onMediaClick
+        mediaCardElement.ariaLabel = `${title}, closeup view`
 
         const mediaImageElement = image
             ? document.createElement("img")
