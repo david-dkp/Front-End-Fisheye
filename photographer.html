@@ -29,9 +29,7 @@
                     <p class="photograph-infos-location"></p>
                     <p class="photograph-infos-tagline"></p>
                 </div>
-                <button class="contact_button" onclick="displayModal()">
-                    Contactez-moi
-                </button>
+                <button class="contact_button">Contactez-moi</button>
                 <img class="photograph-header-image" />
             </div>
             <div class="photograph-medias-section">
@@ -62,37 +60,43 @@
             </div>
             <div id="contact_modal">
                 <div class="modal">
-                    <header>
+                    <div class="modal-header">
                         <h2>Contactez-moi</h2>
                         <img
+                            class="modal-close-button"
                             src="assets/icons/close.svg"
-                            onclick="closeModal()"
                         />
-                    </header>
+                    </div>
                     <form>
                         <div>
                             <label>Prénom</label>
-                            <input type="text" />
+                            <input class="firstname-input" type="text" />
+                            <p class="error-text error-text-firstname"></p>
                         </div>
                         <div>
                             <label>Nom</label>
-                            <input type="text" />
+                            <input class="lastname-input" type="text" />
+                            <p class="error-text error-text-lastname"></p>
                         </div>
                         <div>
                             <label>Email</label>
-                            <input type="email" />
+                            <input class="email-input" type="text" />
+                            <p class="error-text error-text-email"></p>
                         </div>
                         <div>
                             <label>Votre message</label>
-                            <input type="text" />
+                            <input class="message-input" type="" />
+                            <p class="error-text error-text-message"></p>
                         </div>
-                        <button class="contact_button">Envoyer</button>
+                        <button type="submit" class="contact_button">
+                            Envoyer
+                        </button>
                     </form>
                 </div>
             </div>
         </main>
 
-        <script src="/scripts/utils/contactForm.js"></script>
+        <script type="module" src="/scripts/utils/contactForm.js"></script>
         <script type="module" src="/scripts/pages/photographer.js"></script>
     </body>
 </html>

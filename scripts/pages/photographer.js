@@ -4,6 +4,7 @@ import { getPhotographerMedias, updateMediaLike } from "../apis/mediasApi.js"
 import { getPhotographImagePath } from "../utils/imageUtils.js"
 import { createMedia } from "../factories/medias.js"
 import { createMediaSorting } from "../factories/mediasSorting.js"
+
 import {
     sortMediasByPopularity,
     sortMediasByTitle,
@@ -111,58 +112,6 @@ const renderMediasSortingItems = () => {
     })
 
     sortingDropDownListElement.append(...sortingMediasElements)
-
-    // if (isSortingDropDownOpen) {
-    //     const activeSortingItemElement = createMediaSorting({
-    //         name: activeSortingItem.name,
-    //         showChevron: true,
-    //         isChevronUp: true,
-    //         onClick: () => {
-    //             isSortingDropDownOpen = false
-    //             renderMediasSortingItems()
-    //         },
-    //     }).getMediaSortingDOM()
-    //     sortingDropDownListElement.appendChild(activeSortingItemElement)
-
-    //     const otherSortingItems = mediasSortingItems.filter(
-    //         (item) => item.id !== activeSortingItem.id
-    //     )
-    //     const otherSortingItemsElements = otherSortingItems.map((item) => {
-    //         const mediaSortingElement = createMediaSorting({
-    //             name: item.name,
-    //             onClick: async () => {
-    //                 activeSortingItem = item
-    //                 isSortingDropDownOpen = false
-    //                 renderMediasSortingItems()
-    //                 renderPhotographerMedias(
-    //                     activeSortingItem.sortMedias(
-    //                         await getPhotographerMedias(photographerId)
-    //                     )
-    //                 )
-    //             },
-    //         }).getMediaSortingDOM()
-
-    //         return mediaSortingElement
-    //     })
-    //     sortingDropDownListElement.append(...otherSortingItemsElements)
-    // } else {
-    //     const activeSortingItemElement = createMediaSorting({
-    //         name: activeSortingItem.name,
-    //         isChevronUp: false,
-    //         showChevron: true,
-    //         onClick: async () => {
-    //             isSortingDropDownOpen = true
-    //             renderMediasSortingItems()
-    //             renderPhotographerMedias(
-    //                 activeSortingItem.sortMedias(
-    //                     await getPhotographerMedias(photographerId)
-    //                 )
-    //             )
-    //         },
-    //     }).getMediaSortingDOM()
-
-    //     sortingDropDownListElement.appendChild(activeSortingItemElement)
-    // }
 }
 
 const renderPhotographerMedias = (medias) => {
@@ -178,6 +127,11 @@ const renderPhotographerMedias = (medias) => {
         })
         mediasSection.appendChild(mediaDOM.getMediaCardDOM())
     })
+}
+
+const renderContactTitle = (photograph) => {
+    const contactTitleElement = document.querySelector(".modal-header h2")
+    contactTitleElement.textContent = "Contactez-moi " + photograph.name
 }
 
 const renderPhotographer = (photographer, totalLikesCount) => {
@@ -209,6 +163,7 @@ const init = async () => {
     renderPhotographer(photographer, totalLikesCount)
     renderPhotographerMedias(activeSortingItem.sortMedias(photographerMedias))
     renderMediasSortingItems()
+    renderContactTitle(photographer)
 }
 
 init()
