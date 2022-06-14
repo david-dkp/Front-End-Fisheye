@@ -134,7 +134,9 @@ const renderPhotographerMedias = (medias) => {
                 initImageViewer(medias, index)
             }
         )
-        mediasSection.appendChild(mediaDOM.getMediaCardDOM())
+        const domElement = mediaDOM.getMediaCardDOM()
+        domElement.setAttribute("tabindex", "0")
+        mediasSection.appendChild(domElement)
     })
 }
 

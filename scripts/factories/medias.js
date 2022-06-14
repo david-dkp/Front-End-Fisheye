@@ -4,7 +4,7 @@ export const createMedia = (media, onHeartIconClick, onMediaClick) => {
     const { id, title, image, video, likes, date, price } = media
 
     function getMediaCardDOM() {
-        const mediaCardElement = document.createElement("div")
+        const mediaCardElement = document.createElement("li")
         mediaCardElement.classList.add("photograph-media-card")
         mediaCardElement.onclick = onMediaClick
         mediaCardElement.ariaLabel = `${title}, closeup view`
