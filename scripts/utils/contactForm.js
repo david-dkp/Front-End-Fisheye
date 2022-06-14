@@ -47,7 +47,7 @@ const hiddenIdInputElement = document.createElement("input")
 hiddenIdInputElement.type = "hidden"
 hiddenIdInputElement.name = "id"
 hiddenIdInputElement.value = urlParams.id
-contactFormElement.appendChild(hiddenIdInputElement)
+contactFormElement.prepend(hiddenIdInputElement)
 
 function validateFirstName() {
     const errorText = validateStringNotEmpty(

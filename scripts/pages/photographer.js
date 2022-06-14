@@ -16,6 +16,16 @@ import {
     getFormattedPrice,
 } from "../utils/numberUtils.js"
 
+const queryParams = getQueryParams()
+if (queryParams.firstname) {
+    console.log({
+        firstname: queryParams.firstname,
+        lastname: queryParams.lastname,
+        email: queryParams.email,
+        message: queryParams.message,
+    })
+}
+
 //Dom elements
 const photographNameElement = document.querySelector(".photograph-infos-name")
 const photographLocationElement = document.querySelector(
