@@ -60,6 +60,7 @@ mediaViewerRightButtonElement.onclick = () => {
 }
 
 mediaViewerCloseButtonElement.onclick = () => {
+    mediaViewerDialogElement.setAttribute("open", "false")
     mediaViewerDialogElement.style.display = "none"
 }
 
@@ -67,5 +68,7 @@ export const init = (medias, mediaIndex) => {
     currentMedias = medias
     currentMediaIndex = mediaIndex
     mediaViewerDialogElement.style.display = "flex"
+    mediaViewerDialogElement.setAttribute("open", "true")
+    mediaViewerRightButtonElement.focus()
     renderImageAtIndex(mediaIndex)
 }

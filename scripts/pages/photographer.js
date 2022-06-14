@@ -120,7 +120,8 @@ const renderPhotographerMedias = (medias) => {
     medias.forEach((media, index) => {
         const mediaDOM = createMedia(
             media,
-            async () => {
+            async (e) => {
+                e.stopPropagation()
                 await updateMediaLike(media.id, media.likes + 1)
                 const newMedias = await getPhotographerMedias(photographerId)
                 updateTotalLikesCount(
