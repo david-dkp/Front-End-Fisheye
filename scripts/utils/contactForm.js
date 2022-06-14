@@ -4,26 +4,8 @@ import {
 } from "../form/validators/index.js"
 import { getQueryParams } from "../utils/urlUtils.js"
 
-function displayModal() {
-    const modal = document.getElementById("contact_modal")
-    modal.style.display = "flex"
-}
-
-function closeModal() {
-    const modal = document.getElementById("contact_modal")
-    modal.style.display = "none"
-}
-
-const contactButtonElement = document.querySelector(
-    ".photograph-header .contact_button"
-)
-const contactCloseButtonElement = document.querySelector(".modal-close-button")
-const contactFormElement = document.querySelector("form")
-
-contactButtonElement.onclick = displayModal
-contactCloseButtonElement.onclick = closeModal
-
 //Dom elements
+const modal = document.getElementById("contact_modal")
 const firstNameInput = document.querySelector(".firstname-input")
 const lastNameInput = document.querySelector(".lastname-input")
 const emailInput = document.querySelector(".email-input")
@@ -35,6 +17,26 @@ const firstNameErrorTextElement = document.querySelector(
 const lastNameErrorTextElement = document.querySelector(".error-text-lastname")
 const emailErrorTextElement = document.querySelector(".error-text-email")
 const messageErrorTextElement = document.querySelector(".error-text-message")
+
+const contactButtonElement = document.querySelector(
+    ".photograph-header .contact_button"
+)
+const contactCloseButtonElement = document.querySelector(".modal-close-button")
+const contactFormElement = document.querySelector("form")
+
+contactButtonElement.onclick = displayModal
+contactCloseButtonElement.onclick = closeModal
+
+function displayModal() {
+    modal.style.display = "flex"
+    modal.setAttribute("open", "true")
+    firstNameInput.focus()
+}
+
+function closeModal() {
+    modal.style.display = "none"
+    modal.setAttribute("open", "false")
+}
 
 const firstNameErrorText = "Veuillez entrer votre prénom."
 
