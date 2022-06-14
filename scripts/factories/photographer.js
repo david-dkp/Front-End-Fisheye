@@ -11,7 +11,7 @@ export const createPhotographer = (data) => {
 
         const linkElement = document.createElement("a")
         linkElement.classList.add("photographer-link")
-        linkElement.setAttribute("href", "/photographer.html?id=" + id)
+        linkElement.setAttribute("href", "./photographer.html?id=" + id)
 
         const profileImageElement = document.createElement("img")
         profileImageElement.classList.add("photographer-photo")
