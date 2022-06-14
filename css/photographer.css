@@ -9,6 +9,7 @@
     padding-block: 20px;
     width: 100vw;
     height: 100vh;
+    z-index: 5;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.2);
 }
@@ -178,10 +179,12 @@ form input {
 .sorting-item {
     background-color: var(--color-primary);
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border: none;
     padding: 0.6em;
+    font-size: 1em;
+    width: 100%;
+    text-align: start;
+    font-family: "DM Sans", sans-serif;
 }
 
 .sorting-item i {
@@ -197,21 +200,21 @@ form input {
     transform: scale(0.9);
 }
 
-.sorting-list-container {
-    position: relative;
-}
-
 .sorting-dropdown-list {
-    top: 0;
+    top: 100%;
+    height: 0;
+    width: 100%;
     position: absolute;
     list-style: none;
-    border-radius: 5px;
-    height: 40.1875px;
     overflow: hidden;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    z-index: 1;
 }
 
 .sorting-dropdown-list.open {
-    height: auto;
+    height: max-content;
 }
 
 .sorting-item-placeholder {
@@ -286,4 +289,22 @@ form input {
 
 .sorting-label {
     font-size: 1.2rem;
+}
+
+.sorting-dropdown-container {
+    position: relative;
+    border-radius: 5px;
+    width: 117.578px;
+}
+
+.current-sorting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.current-sorting-item.open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }

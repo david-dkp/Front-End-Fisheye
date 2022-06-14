@@ -39,18 +39,15 @@
             <div class="photograph-medias-section">
                 <div class="sorting-container">
                     <h2 class="sorting-label">Trier par</h2>
-                    <div class="sorting-list-container">
-                        <div class="sorting-item sorting-item-placeholder">
-                            Popularité<i class="fa-solid fa-chevron-down"></i>
-                        </div>
-
-                        <ul class="sorting-dropdown-list">
-                            <li class="sorting-item">
-                                Popularité<i
-                                    class="fa-solid fa-chevron-down"
-                                ></i>
-                            </li>
-                        </ul>
+                    <div class="sorting-dropdown-container">
+                        <button
+                            aria-expanded="false"
+                            class="sorting-item current-sorting-item"
+                        >
+                            <span class="current-sorting-name">Popularité</span
+                            ><i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <ul role="listbox" class="sorting-dropdown-list"></ul>
                     </div>
                 </div>
                 <ul class="photograph-medias"></ul>

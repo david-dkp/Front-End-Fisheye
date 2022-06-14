@@ -49,9 +49,38 @@ const sortingDropDownListElement = document.querySelector(
     ".sorting-dropdown-list"
 )
 
-const sortingItemPlaceHolderElement = document.querySelector(
-    ".sorting-item-placeholder"
+const currentSortingItemElement = document.querySelector(
+    ".current-sorting-item"
 )
+
+const currentSortingItemIconElement =
+    currentSortingItemElement.querySelector("i")
+
+const currentSortingNameElement = currentSortingItemElement.querySelector(
+    ".current-sorting-name"
+)
+
+const toggleDropDownList = () => {
+    isSortingDropDownOpen = !isSortingDropDownOpen
+
+    sortingDropDownListElement.classList.toggle("open")
+    currentSortingItemElement.classList.toggle("open")
+    currentSortingItemElement.setAttribute(
+        "arial-expanded",
+        isSortingDropDownOpen
+    )
+    if (isSortingDropDownOpen) {
+        currentSortingItemIconElement.classList.remove("fa-chevron-down")
+        currentSortingItemIconElement.classList.add("fa-chevron-up")
+    } else {
+        currentSortingItemIconElement.classList.remove("fa-chevron-up")
+        currentSortingItemIconElement.classList.add("fa-chevron-down")
+    }
+}
+
+currentSortingItemElement.onclick = () => {
+    toggleDropDownList()
+}
 
 let photographerId
 
@@ -83,31 +112,26 @@ const updateTotalLikesCount = (totalLikesCount) => {
 const renderMediasSortingItems = () => {
     sortingDropDownListElement.innerHTML = ""
 
-    sortingItemPlaceHolderElement.textContent = activeSortingItem.name
-    const chevronElement = document.createElement("i")
-    chevronElement.classList.add("fa-solid", "fa-chevron-down")
+    currentSortingNameElement.textContent = activeSortingItem.name
 
-    sortingItemPlaceHolderElement.appendChild(chevronElement)
-
-    const sortingMediasItemsOrder = mediasSortingItems.sort((a, b) => {
-        if (a.id === activeSortingItem.id) {
-            return -1
-        }
-        if (b.id === activeSortingItem.id) {
-            return 1
-        }
-        return 0
-    })
+    const sortingMediasItemsOrder = mediasSortingItems
+        .sort((a, b) => {
+            if (a.id === activeSortingItem.id) {
+                return -1
+            }
+            if (b.id === activeSortingItem.id) {
+                return 1
+            }
+            return 0
+        })
+        .filter((item) => item.id !== activeSortingItem.id)
 
     const sortingMediasElements = sortingMediasItemsOrder.map((item, i) => {
         const sortingItemElement = createMediaSorting({
             name: item.name,
-            showChevron: i === 0,
-            isChevronUp: isSortingDropDownOpen,
             onClick: async () => {
                 activeSortingItem = item
-                isSortingDropDownOpen = !isSortingDropDownOpen
-                sortingDropDownListElement.classList.toggle("open")
+                toggleDropDownList()
                 renderMediasSortingItems()
 
                 if (i !== 0) {
@@ -119,9 +143,14 @@ const renderMediasSortingItems = () => {
                 }
             },
         })
-        return sortingItemElement.getMediaSortingDOM()
+        const sortingItemDomElement = sortingItemElement.getMediaSortingDOM()
+        return sortingItemDomElement
     })
 
+    sortingDropDownListElement.setAttribute(
+        "arial-expanded",
+        isSortingDropDownOpen
+    )
     sortingDropDownListElement.append(...sortingMediasElements)
 }
 
