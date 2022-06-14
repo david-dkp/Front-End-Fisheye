@@ -64,9 +64,14 @@ const toggleDropDownList = () => {
     isSortingDropDownOpen = !isSortingDropDownOpen
 
     sortingDropDownListElement.classList.toggle("open")
+    sortingDropDownListElement.setAttribute(
+        "aria-hidden",
+        !isSortingDropDownOpen
+    )
+
     currentSortingItemElement.classList.toggle("open")
     currentSortingItemElement.setAttribute(
-        "arial-expanded",
+        "aria-expanded",
         isSortingDropDownOpen
     )
     if (isSortingDropDownOpen) {
