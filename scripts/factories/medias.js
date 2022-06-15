@@ -8,6 +8,11 @@ export const createMedia = (media, onHeartIconClick, onMediaClick) => {
         mediaCardElement.classList.add("photograph-media-card")
         mediaCardElement.onclick = onMediaClick
         mediaCardElement.ariaLabel = `${title}, closeup view`
+        mediaCardElement.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                onMediaClick()
+            }
+        })
 
         const mediaImageElement = image
             ? document.createElement("img")

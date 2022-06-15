@@ -1,10 +1,9 @@
+const photographers = await fetch("./data/photographers.json")
+    .then((results) => results.json())
+    .then((data) => data.photographers)
+
 export const getPhotographers = async () => {
-    // Penser à remplacer par les données récupérées dans le json
-    const data = await fetch("./data/photographers.json").then((results) =>
-        results.json()
-    )
-    // et bien retourner le tableau photographers seulement une fois
-    return data.photographers
+    return photographers
 }
 
 export const getPhotographerById = async (id) => {
