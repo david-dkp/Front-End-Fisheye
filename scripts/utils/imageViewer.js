@@ -64,6 +64,17 @@ mediaViewerCloseButtonElement.onclick = () => {
     mediaViewerDialogElement.style.display = "none"
 }
 
+document.addEventListener("keyup", (event) => {
+    console.log(event)
+    if (event.key === "ArrowLeft") {
+        mediaViewerLeftButtonElement.click()
+    } else if (event.key === "ArrowRight") {
+        mediaViewerRightButtonElement.click()
+    } else if (event.key === "Escape") {
+        mediaViewerCloseButtonElement.click()
+    }
+})
+
 export const init = (medias, mediaIndex) => {
     currentMedias = medias
     currentMediaIndex = mediaIndex
