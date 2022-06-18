@@ -24,9 +24,6 @@ const contactButtonElement = document.querySelector(
 const contactCloseButtonElement = document.querySelector(".modal-close-button")
 const contactFormElement = document.querySelector("form")
 
-contactButtonElement.onclick = displayModal
-contactCloseButtonElement.onclick = closeModal
-
 function displayModal() {
     modal.style.display = "flex"
     modal.setAttribute("open", "true")
@@ -157,6 +154,19 @@ function validateContactForm() {
         contactFormElement.submit()
     }
 }
+const handleKeyUp = (event) => {
+    if (event.key === "Escape") {
+        contactCloseButtonElement.click()
+    }
+}
+
+contactButtonElement.onclick = displayModal
+contactCloseButtonElement.onclick = () => {
+    closeModal()
+    document.removeEventListener("keyup", handleKeyUp)
+}
+
+document.addEventListener("keyup", handleKeyUp)
 
 contactFormElement.addEventListener("submit", (e) => {
     e.preventDefault()

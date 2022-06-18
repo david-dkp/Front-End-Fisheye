@@ -45,6 +45,16 @@ const renderImageAtIndex = (index) => {
     mediaViewerMediaNameElement.innerHTML = media.title
 }
 
+const handleKeyUp = (event) => {
+    if (event.key === "ArrowLeft") {
+        mediaViewerLeftButtonElement.click()
+    } else if (event.key === "ArrowRight") {
+        mediaViewerRightButtonElement.click()
+    } else if (event.key === "Escape") {
+        mediaViewerCloseButtonElement.click()
+    }
+}
+
 mediaViewerLeftButtonElement.onclick = () => {
     if (currentMediaIndex > 0) {
         currentMediaIndex--
@@ -62,18 +72,10 @@ mediaViewerRightButtonElement.onclick = () => {
 mediaViewerCloseButtonElement.onclick = () => {
     mediaViewerDialogElement.setAttribute("open", "false")
     mediaViewerDialogElement.style.display = "none"
+    document.removeEventListener("keyup", handleKeyUp)
 }
 
-document.addEventListener("keyup", (event) => {
-    console.log(event)
-    if (event.key === "ArrowLeft") {
-        mediaViewerLeftButtonElement.click()
-    } else if (event.key === "ArrowRight") {
-        mediaViewerRightButtonElement.click()
-    } else if (event.key === "Escape") {
-        mediaViewerCloseButtonElement.click()
-    }
-})
+document.addEventListener("keyup", handleKeyUp)
 
 export const init = (medias, mediaIndex) => {
     currentMedias = medias
