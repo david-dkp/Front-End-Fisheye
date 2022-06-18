@@ -19,11 +19,15 @@ let medias = await fetch("./data/photographers.json")
  * @returns {Array<Media>} the medias of the photographer
  */
 export const getPhotographerMedias = async (id) => {
-    return medias.filter((media) => media.photographerId == id)
+    return medias.filter(
+        (media) => media.photographerId.toString() === id.toString()
+    )
 }
 
 export const updateMediaLike = async (mediaId, likes) => {
-    const media = medias.find((media) => media.id == mediaId)
+    const media = medias.find(
+        (media) => media.id.toString() === mediaId.toString()
+    )
     media.likes = likes
     return media
 }

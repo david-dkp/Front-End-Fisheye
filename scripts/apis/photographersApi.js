@@ -10,5 +10,7 @@ export const getPhotographerById = async (id) => {
     const photographers = await getPhotographers()
     if (!photographers) return null
 
-    return photographers.find((photographer) => photographer.id == id)
+    return photographers.find(
+        (photographer) => photographer.id.toString() === id.toString()
+    )
 }
