@@ -31,6 +31,7 @@ const renderImageAtIndex = (index) => {
         const videoElement = document.createElement("video")
         videoElement.classList.add("media-viewer-media-image")
         videoElement.setAttribute("src", getMediaImagePath(media.video))
+        videoElement.setAttribute("controls", "true")
         videoElement.setAttribute("alt", media.title)
         videoElement.setAttribute("autoplay", "true")
         mediaViewerMediaContainerElement.prepend(videoElement)
