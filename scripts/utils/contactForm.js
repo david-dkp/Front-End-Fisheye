@@ -80,7 +80,7 @@ function validateLastName() {
 }
 
 const emailErrorText = "Veuillez entrer une adresse e-mail valide."
-const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
 function validateEmail() {
     const errorText = validateStringWithRegex(
