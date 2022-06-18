@@ -41,8 +41,13 @@ export const createMedia = (media, onHeartIconClick, onMediaClick) => {
             "fa-heart",
             "photograph-media-like-icon"
         )
+        mediaLikeIconElement.setAttribute("tabindex", "0")
         mediaLikeIconElement.addEventListener("click", onHeartIconClick)
-
+        mediaLikeIconElement.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                onHeartIconClick(event)
+            }
+        })
         mediaInfosElement.appendChild(mediaNameElement)
         mediaInfosElement.appendChild(mediaLikesCountElement)
         mediaInfosElement.appendChild(mediaLikeIconElement)
