@@ -76,8 +76,6 @@ mediaViewerCloseButtonElement.onclick = () => {
     document.removeEventListener("keyup", handleKeyUp)
 }
 
-document.addEventListener("keyup", handleKeyUp)
-
 export const init = (medias, mediaIndex) => {
     currentMedias = medias
     currentMediaIndex = mediaIndex
@@ -85,4 +83,5 @@ export const init = (medias, mediaIndex) => {
     mediaViewerDialogElement.setAttribute("open", "true")
     mediaViewerRightButtonElement.focus()
     renderImageAtIndex(mediaIndex)
+    document.addEventListener("keyup", handleKeyUp)
 }

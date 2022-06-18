@@ -28,11 +28,13 @@ function displayModal() {
     modal.style.display = "flex"
     modal.setAttribute("open", "true")
     firstNameInput.focus()
+    document.addEventListener("keyup", handleKeyUp)
 }
 
 function closeModal() {
     modal.style.display = "none"
     modal.setAttribute("open", "false")
+    document.removeEventListener("keyup", handleKeyUp)
 }
 
 const firstNameErrorText = "Veuillez entrer votre prénom."
@@ -163,10 +165,7 @@ const handleKeyUp = (event) => {
 contactButtonElement.onclick = displayModal
 contactCloseButtonElement.onclick = () => {
     closeModal()
-    document.removeEventListener("keyup", handleKeyUp)
 }
-
-document.addEventListener("keyup", handleKeyUp)
 
 contactFormElement.addEventListener("submit", (e) => {
     e.preventDefault()
